@@ -1,0 +1,46 @@
+body {
+	background-image: url(../images/fallingsnow2.gif);
+	color: black;
+	font-family:  'Arial', 'Verdana', Verdana, sans-serif;
+}
+
+.container{
+	margin-top: 50px;
+	margin-left: 300px;
+	margin-right: 300px;
+	margin-bottom: 200px;
+	text-align: center;
+	background: #d9eff9;
+	background: linear-gradient(to bottom right, #11516e, #d9eff9);
+	padding: 20px;
+	border: 1.5px solid white;
+}
+
+h1,h2, h3{
+	text-align: center;
+}
+
+h1{
+	font-size: 32px;
+	margin-top: 40px;
+}
+
+h2{
+	font-size: 28px;
+}
+
+h3, p {
+	font size: 26px;
+}
+
+.gameBoard{
+	
+}
+
+.pano{
+	position: relative;
+	margin-bottom: -22px;
+    padding: 30px;
+    width: 800px;
+}
+
