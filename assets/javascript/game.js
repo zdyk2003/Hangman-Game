@@ -1,60 +1,107 @@
 // variable for wins, losses, letters guessed, guesses left
 // variable for hangman letters chosen
 // variable for reset at end of guesses left
-
-var words= ["snow", "skis", "gloves", "skiboot", "coat", "helmet"];
-var arrIndex= Math.floor(Math.random() * words.length);
-var randomWord= words[arrIndex];
-	console.log(randomWord);
-var letters = randomWord.split("");
-// the letters that make up the answer in the spaces
-var guessesLeft = 10;
 var wins = 0;
-var lettersGuessed = [];
-var display = randomWord.length;
-	for (var i = 0; i < randomWord.length; i++) {
-			display[i]= "_ ";
+document.getElementById("wins").innerHTML = wins;
+var guessesLeft = 10;
+document.getElementById("guessesLeft").innerHTML = guessesLeft;
+var wordBank= ["SNOW", "SKIS", "GLOVES", "SKIBOOT", "COAT", "HELMET"];
+var imgBank = ['snow.jpg', 'ski.jpg', 'gloves.jpg', 'skiboot.jpg', 'coat.jpg', 'helmet.jpg'];
+var randomNum = Math.floor(Math.random() * wordBank.length);
+var currentWord= wordBank[randomNum];
+var currentImg = imgBank[randomNum];
+console.log(currentWord);
+var blankWord = [];
+var incorrectLetters = [];
+// var image = [
+// 	"assets/images/coat.jpg"
+// 	"assets/images/gloves.jpg"
+// 	"assets/images/helmet.jpg"
+// 	"assets/images/skiboot.jpg"
+// 	"assets/images/skis.jpg"
+// 	"assets/images/snow.jpg"
+// 	];
+
+for (i = 0; i < currentWord.length; i++) {
+	blankWord[i] = "_ ";
+}
+console.log(blankWord);
+
+document.getElementById("currentWord").innerHTML = blankWord.join("");
+
+document.onkeyup = function(event) {
+
+	var userChoice = event.key;
+	userChoice = userChoice.toUpperCase();
+	console.log(userChoice);
+
+	var misses = 0;
+
+	for (i = 0; i < currentWord.length; i++) {
+		if(currentWord[i] === userChoice){
+			blankWord[i] = userChoice;
+			document.getElementById("currentWord").innerHTML = blankWord.join("");
+		}	
+		else{
+			misses++;
 		}
 
-	document.onkeyup = function (event) {
-
-		var userChoice = event.key;
-			console.log(userChoice);
-
-	// for (var i = 0; i < randomWord.length; i++) {
-	// 	if(randomWord[i] === userChoice){
-	// 		display[i] = userChoice + "";
-	// 		}	
-	// 	}
+	}
 	
-		if  (guessesLeft == 0) {
-				guessesLeft = 10;
-				lettersGuessed = [];
-				alert("YARDSALE!! Try Again!");
-			}	
-		
-			else if (userChoice == randomWord) {
-				wins++;
-				guessesLeft = 10;
-				alert("You are a downhill master!");
-			}
-
-				else if (lettersGuessed != letters) {
-				  	guessesLeft--;
-				  	lettersGuessed.push(userChoice);
+		if  (misses === currentWord.length) {
+				var counter = 0;
+				for(var i = 0; i < incorrectLetters.length; i++) {
+					if(userChoice === incorrectLetters[i]) {
+						break;
+					}
+					else {
+						counter ++;
+					}
 				}
 
-			var html = 
-			
-			"<p>Wins: " + wins + "</p>" +
-			"<br>" +
-			"<p>Guesses Left: " + guessesLeft + "</p>" +
-			"<br>" +
-			"<p>Current Word:  " + display + "</p>" +
-			"<br>" +
-			"<p>Letters you have guessed so far: " +  lettersGuessed  + "</p>";
-
-			document.querySelector(".gameBoard").innerHTML = html;
-
+				if(counter === incorrectLetters.length) {
+					incorrectLetters.push(userChoice);
+					guessesLeft--;
+					document.getElementById("guessesLeft").innerHTML = guessesLeft;
+					document.getElementById("lettersGuessed").innerHTML = incorrectLetters;
+					}
+				}
+				checkIfDone();
 		}
+function checkIfDone () {
+	var counter = 0;
+	for(var i = 0; i < blankWord.length; i++) {
+		if (blankWord[i] === "_ ") {
+			break;
+		}
+		else{
+			counter++;
+		}
+	}
+	if(counter === blankWord.length) {
+		wins++;
+		$(".image").attr("src", "assets/images/" + currentImg);
 
+		newGame();
+	}
+}
+
+function newGame() {
+	// $(".image").attr("src", "");
+	guessesLeft = 10;
+	incorrectLetters= [];
+	currentWord= wordBank[Math.floor(Math.random() * wordBank.length)];
+	blankWord = [];
+	for (i = 0; i <currentWord.length; i++){
+		blankWord[i] = "_ ";
+
+	}
+	console.log(currentWord);
+	console.log(blankWord);
+	document.getElementById("wins").innerHTML = wins;
+	document.getElementById("guessesLeft").innerHTML = guessesLeft;
+	document.getElementById("currentWord").innerHTML = blankWord.join("");
+	document.getElementById("lettersGuessed").innerHTML = incorrectLetters;
+
+
+}

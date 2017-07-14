@@ -2,12 +2,10 @@
 <html>
 <head>
 	<title>Hangman Game</title>
+
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<script src="assets/javascript/game.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.js"
-  		integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg="
-  		crossorigin="anonymous"></script>
+
 </head>
 <body>
 
@@ -18,24 +16,39 @@
 					<br>
 						<h3>Hint...all these words are very important to make a skier's day epic</h3>
 						<br>
-						<h3 class= "start">Press any key to get started!</h3>
-						<br>
-						<br>
+	
+	</div>				
 
-			<div class= "gameBoard">
-				<p id = "wins">Wins:</p>
+	<div class = "container2">
+
+			<img class = "image">
+
+			<div class= "rightColumn">
 				<br>
-				<p id = "guessesLeft">Guesses Left: 10</p>
 				<br>
-				<p id = "display">Current Word:   </p>
+				<p>Wins:</p>
 				<br>
-				<p id= "lettersGuessed">Letters you have guessed so far:</p>
+				<p id = "wins"</p>
+				<br>
+				<p> Guesses Left:</p>
+				<br>
+				<p id = "guessesLeft"></p>
+				<br>
+				<p>Current Word</p>
+				<br>
+				<p id = "currentWord"></p>
+				<br>
+				<p>Letters You Have Guessed:</p>
+				<br>
+				<p id= "lettersGuessed"></p>
 			</div>
+	</div>	
 
-			<img class= "pano" src="assets/images/panoramic2.jpg" alt= "panoramic image of ski hill">
-
-	</div>		
-
-		
+	<script src="assets/javascript/game.js"></script>
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+  crossorigin="anonymous"></script>
+			
 </body>
 </html>
