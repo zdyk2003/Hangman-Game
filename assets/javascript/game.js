@@ -81,21 +81,25 @@ function checkIfDone () {
 	if(counter === blankWord.length) {
 		wins++;
 		$(".image").attr("src", "assets/images/" + currentImg);
-
-		newGame();
+		setTimeout(function() {
+			$(".image").attr("src", "");	
+			newGame();
+		}, 3000);
 	}
+
 }
 
 function newGame() {
-	// $(".image").attr("src", "");
 	guessesLeft = 10;
 	incorrectLetters= [];
-	currentWord= wordBank[Math.floor(Math.random() * wordBank.length)];
+	randomNum = Math.floor(Math.random() * wordBank.length);
+	currentWord= wordBank[randomNum];
+	currentImg = imgBank[randomNum];
 	blankWord = [];
 	for (i = 0; i <currentWord.length; i++){
 		blankWord[i] = "_ ";
-
 	}
+
 	console.log(currentWord);
 	console.log(blankWord);
 	document.getElementById("wins").innerHTML = wins;
